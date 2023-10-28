@@ -17,7 +17,8 @@ app.use(express.json({ extended: true }));
 app.use(
   cors({
     //origin: "http://localhost:5173",
-    origin: "https://c14-12-n-node-react.vercel.app",
+    //origin: "https://c14-12-n-node-react.vercel.app",
+    origin: "https://c14-12-n-node-react-9s6iumb2d-marlui.vercel.app",
     credentials: true,
   })
 );
@@ -33,35 +34,6 @@ app.get("/", (req, res) => {
   res.send("Welcome to my API");
 });
 
-/*
-app.post("/account", verifyToken, (req, res) => {
-  jwt.verify(req.token, "secret", (err, authData) => {
-    if (err) {
-      res.sendStatus(403);
-    } else {
-      res.json({
-        message: "User authorizated",
-        authData,
-      });
-    }
-  });
-});
-
-// Authorization : Bearer <token>
-function verifyToken(req, res, next) {
-  const bearerHeader = req.headers["authorization"];
-
-  if (typeof bearerHeader !== "undefined") {
-    const bearerToken = bearerHeader.split(" ")[1];
-    req.token = bearerToken;
-    next();
-  } else {
-    res.sendStatus(403);
-  }
-}
-*/
-
-//Mongodb connection
 mongoose
   .connect(process.env.MONGODB_URI)
   .then(() => console.log("MongoDB connected"))
