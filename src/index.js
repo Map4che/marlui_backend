@@ -16,15 +16,37 @@ const port = process.env.PORT || 4000;
 
 //middleware
 app.use(express.json({ extended: true }));
+
+const allowedOrigins = [
+  "http://localhost:5173",
+  "https://c14-12-n-node-react.vercel.app",
+];
+
+const corsOptions = {
+  origin: function (origin, callback) {
+    if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
+      callback(null, true);
+    } else {
+      callback(new Error("Origen no permitido por CORS"));
+    }
+  },
+  credentials: true,
+};
+
+app.use(cors(corsOptions));
+
+/*
 app.use(
   // allowCors
   cors({
-    origin: "*",
+    //origin: "*",
     //origin: "http://localhost:5173",
-    //origin:"https://c14-12-n-node-react.vercel.app/"
+    origin:"https://c14-12-n-node-react.vercel.app",
     credentials: true,
   })
 );
+*/
+
 app.use(cookieParser());
 
 app.use("/api", userRoutes);
