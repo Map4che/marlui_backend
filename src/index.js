@@ -19,9 +19,9 @@ app.use(express.json({ extended: true }));
 app.use(
   // allowCors
   cors({
-    origin: "*",
+    //origin: "*",
     //origin: "http://localhost:5173",
-    //origin:"https://c14-12-n-node-react.vercel.app/"
+    origin:"https://c14-12-n-node-react.vercel.app"
     credentials: true,
   })
 );
